@@ -16,11 +16,11 @@ class DepthwiseSeparableConv(nn.Module):
         x = self.pointwise(x)
         return x
 
-class BiGFF(nn.Module):
+class bigff(nn.Module):
     '''Simplified Bi-directional Gated Feature Fusion using Depthwise Separable Convolutions.'''
 
     def __init__(self, in_channels, out_channels):
-        super(BiGFF, self).__init__()
+        super(bigff, self).__init__()
 
         self.structure_gate = nn.Sequential(
             DepthwiseSeparableConv(in_channels=in_channels * 2, out_channels=out_channels),

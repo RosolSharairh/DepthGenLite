@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 from utils.misc import weights_init
 from models.generator.cfa import CFA
-from models.generator.bigff import BiGFF
+from models.generator.DGDC import bigff
 from models.generator.pconv import PConvBNActiv
 from models.generator.projection import Feature2Structure, Feature2Texture
 from utils.setSeed import setSeed
@@ -69,7 +69,7 @@ class Generator(nn.Module):
         # -----------------------------------
         # Bi-directional Gated Feature Fusion
         # -----------------------------------
-        self.bigff = BiGFF(in_channels=64, out_channels=64)
+        self.bigff = bigff(in_channels=64, out_channels=64)
 
         # ------------------------------
         # Contextual Feature Aggregation
