@@ -1,7 +1,7 @@
 
 # DepthGen Lite
 
-<img src='assets/teaser.png'/>
+<img src='assets\teaser.jpeg'/>
 
 **Efficient Inpainting with Dual-Gen and Depthwise Convolutions**<br>
 
