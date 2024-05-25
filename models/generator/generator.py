@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 from utils.misc import weights_init
 from models.generator.cfa import CFA
-from models.generator.DGDC import bigff
+from models.generator.DGDC import dgdc
 from models.generator.pconv import PConvBNActiv
 from models.generator.projection import Feature2Structure, Feature2Texture
 from utils.setSeed import setSeed
@@ -69,7 +69,7 @@ class Generator(nn.Module):
         # -----------------------------------
         # Bi-directional Gated Feature Fusion
         # -----------------------------------
-        self.bigff = bigff(in_channels=64, out_channels=64)
+        self.dgdc = dgdc(in_channels=64, out_channels=64)
 
         # ------------------------------
         # Contextual Feature Aggregation
@@ -151,7 +151,7 @@ class Generator(nn.Module):
         projected_image = self.texture_feature_projection(dc_texture)
         projected_edge = self.structure_feature_projection(dc_structure)
 
-        output_bigff = self.bigff(dc_texture, dc_structure)
+        output_bigff = self.dgdc(dc_texture, dc_structure)
 
         output = self.fusion_layer1(output_bigff)
         output_atten = self.cfa(output, output)
